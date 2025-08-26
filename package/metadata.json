@@ -1,0 +1,34 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "v@n7k.co",
+                "Name": "Volodymyr Nakvasiuk"
+            },
+            {
+                "Email": "mklapetek@kde.org",
+                "Name": "Martin Klapetek"
+            }
+        ],
+        "BugReportUrl": "https://github.com/v-n7k/plasma-panel-digital-clock/issues",
+        "Category": "Date and Time",
+        "Description": "Configurable KDE Panel Widget of Digital Clock",
+        "FormFactors": [
+            "tablet",
+            "handset",
+            "desktop"
+        ],
+        "Icon": "preferences-system-time",
+        "Id": "com.github.v-n7k.plasma.digitalclock",
+        "License": "GPL-2.0+",
+        "Name": "Configurable Digital Clock",
+        "Website": "https://github.com/v-n7k/plasma-panel-digital-clock"
+    },
+    "X-KDE-ParentApp": "org.kde.plasmashell",
+    "X-Plasma-API-Minimum-Version": "6.4",
+    "X-Plasma-Provides": [
+        "org.kde.plasma.time",
+        "org.kde.plasma.date"
+    ]
+}
