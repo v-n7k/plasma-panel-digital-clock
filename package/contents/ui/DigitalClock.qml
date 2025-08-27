@@ -3,6 +3,7 @@
     SPDX-FileCopyrightText: 2013 Sebastian Kügler <sebas@kde.org>
     SPDX-FileCopyrightText: 2013 Martin Klapetek <mklapetek@kde.org>
     SPDX-FileCopyrightText: 2014 David Edmundson <davidedmundson@kde.org>
+    SPDX-FileCopyrightText: 2025 Volodymyr Nakvasiuk <v@n7k.co>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -121,6 +122,10 @@ MouseArea {
         }
 
         function onDateTimeSeparatorChanged() {
+            main.setupLabels();
+        }
+
+        function onTextColorChanged() {
             main.setupLabels();
         }
     }
@@ -555,6 +560,8 @@ MouseArea {
             PlasmaComponents.Label  {
                 id: timeLabel
 
+                color: fontHelper.color
+
                 font {
                     family: fontHelper.font.family
                     weight: fontHelper.font.weight
@@ -573,6 +580,8 @@ MouseArea {
 
             PlasmaComponents.Label {
                 id: timeZoneLabel
+
+                color: timeLabel.color
 
                 font.weight: timeLabel.font.weight
                 font.italic: timeLabel.font.italic
@@ -594,7 +603,7 @@ MouseArea {
             // height: timeLabel.height * 0.8
             // width: timeLabel.height / 16
             // radius: width / 2
-            // color: Kirigami.Theme.textColor
+            color: timeLabel.color
 
             anchors.leftMargin: timeMetrics.advanceWidth(" ") / 2
             anchors.verticalCenter: parent.verticalCenter
@@ -617,6 +626,8 @@ MouseArea {
             id: dateLabel
 
             visible: Plasmoid.configuration.showDate
+
+            color: timeLabel.color
 
             font.family: timeLabel.font.family
             font.weight: timeLabel.font.weight
@@ -651,6 +662,8 @@ MouseArea {
         id: fontHelper
 
         height: 1024
+
+        color: Plasmoid.configuration.textColor === "" ? Kirigami.Theme.textColor : Plasmoid.configuration.textColor
 
         font.family: (Plasmoid.configuration.autoFontAndSize || Plasmoid.configuration.fontFamily.length === 0) ? Kirigami.Theme.defaultFont.family : Plasmoid.configuration.fontFamily
         font.weight: Plasmoid.configuration.autoFontAndSize ? Kirigami.Theme.defaultFont.weight : Plasmoid.configuration.fontWeight

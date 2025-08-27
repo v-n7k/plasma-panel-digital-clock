@@ -3,6 +3,7 @@
     SPDX-FileCopyrightText: 2013 Sebastian Kügler <sebas@kde.org>
     SPDX-FileCopyrightText: 2015 Kai Uwe Broulik <kde@privat.broulik.de>
     SPDX-FileCopyrightText: 2023 ivan tkachenko <me@ratijas.tk>
+    SPDX-FileCopyrightText: 2025 Volodymyr Nakvasiuk <v@n7k.co>
 
     SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 */
@@ -19,6 +20,7 @@ import org.kde.plasma.core as PlasmaCore
 import org.kde.config as KConfig
 import org.kde.kcmutils as KCMUtils
 import org.kde.kirigami as Kirigami
+import org.kde.kquickcontrols as KQuickControls
 
 KCMUtils.SimpleKCM {
     id: appearancePage
@@ -46,6 +48,8 @@ KCMUtils.SimpleKCM {
     property alias cfg_customDateFormat: customDateFormat.text
     property alias cfg_use24hFormat: use24hFormat.currentIndex
     property alias cfg_dateDisplayFormat: dateDisplayFormat.currentIndex
+
+    property alias cfg_textColor: textColor.text
 
     property real comboBoxWidth: Math.max(dateDisplayFormat.implicitWidth,
                                           showSecondsComboBox.implicitWidth,
@@ -346,6 +350,30 @@ KCMUtils.SimpleKCM {
                 font: Kirigami.Theme.smallFont
             }
         }
+
+        Item {
+            Kirigami.FormData.isSection: true
+        }
+
+        RowLayout{
+            Layout.fillWidth: true
+            Kirigami.FormData.label: i18n("Text color:")
+
+            KQuickControls.ColorButton {
+                id: textColorPicker
+                enabled: true
+                color: textColor.text
+                onAccepted: textColor.text = textColorPicker.color
+            }
+
+            QQC2.TextField {
+                id: textColor
+                Layout.fillWidth: false
+                enabled: true
+                visible: true
+                readOnly: true
+            }
+        }
     }
 
     // Use the Qt.Labs font dialog so it looks okay, or else we get the half-baked
@@ -369,6 +397,18 @@ KCMUtils.SimpleKCM {
     Component.onCompleted: {
         if (!Plasmoid.configuration.showLocalTimeZone) {
             showLocalTimeZoneWhenDifferent.checked = true;
+        }
+
+        if (Plasmoid.configuration.textColor === "") {
+            let colorSet = Kirigami.Theme.colorSet;
+
+            //Kirigami.Theme.colorSet = Kirigami.Theme.Selection;
+            //Kirigami.Theme.colorSet = Kirigami.Theme.Tooltip;
+            Kirigami.Theme.colorSet = Kirigami.Theme.Complementary;
+
+            textColor.text = Kirigami.Theme.textColor;
+
+            Kirigami.Theme.colorSet = colorSet;
         }
     }
 }
