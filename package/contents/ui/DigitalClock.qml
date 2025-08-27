@@ -119,6 +119,10 @@ MouseArea {
         function onUse24hFormatChanged() {
             main.timeFormatCorrection();
         }
+
+        function onDateTimeSeparatorChanged() {
+            main.setupLabels();
+        }
     }
 
     function getCurrentTime(): date {
@@ -249,7 +253,7 @@ MouseArea {
                 target: contentItem
 
                 height: sizehelper.height
-                width: (dateLabel.visible ? dateLabel.width + timeMetrics.advanceWidth(" ") * 2 + separator.width : 0) + labelsGrid.width
+                width: (dateLabel.visible ? dateLabel.width + timeMetrics.advanceWidth(" ") + separatorLabel.width : 0) + labelsGrid.width
             }
 
             AnchorChanges {
@@ -288,6 +292,23 @@ MouseArea {
                 width: timeLabel.paintedWidth
 
                 fontSizeMode: Text.VerticalFit
+            }
+
+            PropertyChanges {
+                target: separatorLabel
+
+                height: sizehelper.height
+                width: separatorLabel.paintedWidth
+
+                fontSizeMode: Text.VerticalFit
+                horizontalAlignment: Text.AlignHCenter
+            }
+
+            AnchorChanges {
+                target: separatorLabel
+
+                anchors.left: dateLabel.right
+                anchors.verticalCenter: labelsGrid.verticalCenter
             }
 
             PropertyChanges {
@@ -565,19 +586,29 @@ MouseArea {
             }
         }
 
-        Rectangle {
-            id: separator
+        PlasmaComponents.Label {
+            id: separatorLabel
 
             property bool isOneLineMode: main.state == "oneLineDate"
 
-            height: timeLabel.height * 0.8
-            width: timeLabel.height / 16
-            radius: width / 2
-            color: Kirigami.Theme.textColor
+            // height: timeLabel.height * 0.8
+            // width: timeLabel.height / 16
+            // radius: width / 2
+            // color: Kirigami.Theme.textColor
 
-            anchors.leftMargin: timeMetrics.advanceWidth(" ") + width / 2
+            anchors.leftMargin: timeMetrics.advanceWidth(" ") / 2
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: dateLabel.right
+
+            font.family: timeLabel.font.family
+            font.weight: timeLabel.font.weight
+            font.italic: timeLabel.font.italic
+            font.pixelSize: 1024
+            minimumPixelSize: 1
+
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            textFormat: Text.PlainText
 
             visible: isOneLineMode && Plasmoid.configuration.showDate
         }
@@ -725,6 +756,8 @@ MouseArea {
             // clear it so it doesn't take space in the layout
             dateLabel.text = "";
         }
+
+        separatorLabel.text = Plasmoid.configuration.dateTimeSeparator;
 
         // find widest character between 0 and 9
         let maximumWidthNumber = 0;

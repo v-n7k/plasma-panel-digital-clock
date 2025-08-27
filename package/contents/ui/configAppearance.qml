@@ -39,6 +39,8 @@ KCMUtils.SimpleKCM {
     property alias cfg_displayTimezoneFormat: displayTimeZoneFormat.currentIndex
     property alias cfg_showSeconds: showSecondsComboBox.currentIndex
 
+    property alias cfg_dateTimeSeparator: dateTimeSeparator.text
+
     property alias cfg_showDate: showDate.checked
     property string cfg_dateFormat: "shortDate"
     property alias cfg_customDateFormat: customDateFormat.text
@@ -171,6 +173,21 @@ KCMUtils.SimpleKCM {
                 text: i18nc("@action:button opens kcm", "Change Regional Settings…")
                 icon.name: "preferences-desktop-locale"
                 onClicked: KCMUtils.KCMLauncher.openSystemSettings("kcm_regionandlang")
+            }
+        }
+
+        Item {
+            Kirigami.FormData.isSection: true
+        }
+
+        RowLayout {
+            Layout.fillWidth: true
+            Kirigami.FormData.label: i18n("Date | Time Separator:")
+            QQC2.TextField {
+                id: dateTimeSeparator
+                Layout.fillWidth: true
+                enabled: true
+                visible: true
             }
         }
 

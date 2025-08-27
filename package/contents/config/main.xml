@@ -19,6 +19,10 @@
       </choices>
       <default>1</default>
     </entry>
+    <entry name="dateTimeSeparator" type="string">
+      <label>String separator between Date and Time.</label>
+      <default>|</default>
+    </entry>
     <entry name="showDate" type="Bool">
       <label>Whether the date should be shown next to the clock.</label>
       <default>true</default>
