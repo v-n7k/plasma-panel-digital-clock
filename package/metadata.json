@@ -20,7 +20,7 @@
             "desktop"
         ],
         "Icon": "preferences-system-time",
-        "Id": "com.github.v-n7k.plasma.digitalclock",
+        "Id": "co.n7k.plasma.digitalclock",
         "License": "GPL-2.0+",
         "Name": "Configurable Digital Clock",
         "Version": "1.0",
