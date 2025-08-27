@@ -23,10 +23,11 @@
         "Id": "com.github.v-n7k.plasma.digitalclock",
         "License": "GPL-2.0+",
         "Name": "Configurable Digital Clock",
+        "Version": "1.0",
         "Website": "https://github.com/v-n7k/plasma-panel-digital-clock"
     },
     "X-KDE-ParentApp": "org.kde.plasmashell",
-    "X-Plasma-API-Minimum-Version": "6.4",
+    "X-Plasma-API-Minimum-Version": "6.0",
     "X-Plasma-Provides": [
         "org.kde.plasma.time",
         "org.kde.plasma.date"
