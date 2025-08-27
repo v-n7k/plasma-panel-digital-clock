@@ -1,0 +1,30 @@
+Dependencies:
+  - 'on': ['Linux', 'FreeBSD', 'Windows', 'macOS']
+    'require':
+      'frameworks/extra-cmake-modules': '@same'
+      'frameworks/karchive' : '@same'
+      'frameworks/kconfig' : '@same'
+      'frameworks/kconfigwidgets' : '@same'
+      'frameworks/kcoreaddons' : '@same'
+      'frameworks/kdbusaddons' : '@same'
+      'frameworks/kglobalaccel' : '@same'
+      'frameworks/kguiaddons' : '@same'
+      'frameworks/ki18n' : '@same'
+      'frameworks/kiconthemes' : '@same'
+      'frameworks/kio' : '@same'
+      'frameworks/knotifications' : '@same'
+      'frameworks/kpackage' : '@same'
+      # kparts for examples
+      'frameworks/kparts' : '@same'
+      'frameworks/kwidgetsaddons' : '@same'
+      'frameworks/kwindowsystem' : '@same'
+      'frameworks/kirigami' : '@same'
+      'frameworks/kcmutils' : '@same'
+      'frameworks/ksvg' : '@same'
+      'plasma/kactivities' : '@same'
+
+Options:
+  test-before-installing: True
+  cppcheck-ignore-files: ['templates/']
+  require-passing-tests-on: [ '@all' ]
+  cmake-options: -DBUILD_EXAMPLES=ON
