@@ -22,7 +22,7 @@
         "Icon": "preferences-system-time",
         "Id": "co.n7k.plasma.digitalclock",
         "License": "GPL-2.0+",
-        "Name": "Configurable Digital Clock",
+        "Name": "Colorful Digital Clock",
         "Version": "1.0",
         "Website": "https://github.com/v-n7k/plasma-panel-digital-clock"
     },
