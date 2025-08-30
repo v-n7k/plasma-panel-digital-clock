@@ -54,6 +54,30 @@ kquitapp6 plasmashell && kstart6 plasmashell
 
 5. Add `Colorful Digital Clock` to your panel from the widgets menu, as usual.
 
+### Option 3: Installation from Source code (NOT Recommended)
+
+1. Download or clone this repository.
+```bash
+git clone https://github.com/v-n7k/plasma-panel-digital-clock.git
+```
+2. `cd` inside
+```bash
+cd plasma-panel-digital-clock
+```
+3. Create the plasmoids folder for the widget:
+```bash
+mkdir -p ~/.local/share/plasma/plasmoids/co.n7k.plasma.digitalclock
+```
+4. Copy content of `package` folder to the palsma widgets folder
+```bash
+cp -r package/. ~/.local/share/plasma/plasmoids/co.n7k.plasma.digitalclock/
+```
+5. Restart Plasma shell to load the new widget:
+```bash
+kquitapp6 plasmashell && kstart6 plasmashell
+```
+6. Add `Colorful Digital Clock` to your panel from the widgets menu, as usual.
+
 ## 🛠 Development & Contributions
 
 ### 💡Feedbacks
